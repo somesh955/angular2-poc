@@ -1,20 +1,21 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Character } from '../../../models';
+import { Vehicle } from '../vehicle.model';
 
 @Component({
   moduleId: module.id,
-  selector: 'story-dashboard-button',
-   templateUrl: './dashboard-button.component.html',
-  styleUrls: ['./dashboard-button.component.css']
+  selector: 'story-vehicle-button',
+   templateUrl: './vehicle-button.component.html',
+  styleUrls: ['./vehicle-button.component.css'],
 })
-export class DashboardButtonComponent implements OnInit {
-  @Input() character: Character;
+export class VehicleButtonComponent implements OnInit {
+  @Input() vehicle: Vehicle;
 
   constructor() {}
 
   ngOnInit() {
   }
+
 }
 
 

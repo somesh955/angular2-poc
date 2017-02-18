@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, Routes, RouterModule } from '@angular/router';
 
-//import { AuthGuard, CanDeactivateGuard, UserProfileService } from '../app/core';
-import { PageNotFoundComponent } from '../app/page-not-found.component';
+import { AuthGuard, CanDeactivateGuard, UserProfileService } from './core';
+import { PageNotFoundComponent } from './page-not-found.component';
 
 /***************************************************************
 * Lazy Loading to Eager Loading
@@ -14,34 +14,44 @@ import { PageNotFoundComponent } from '../app/page-not-found.component';
 * 3. Change the module's default route path from '' to 'pathname'
 *****************************************************************/
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'dashboard', },
+  { path: '', pathMatch: 'full', redirectTo: 'login', },
   {
     path: 'admin',
     loadChildren: 'app/admin/admin.module#AdminModule',
-    canActivate: [],
-    canActivateChild: [],
-    canLoad: [],
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    canLoad: [AuthGuard],
   },
-  { path: 'dashboard', loadChildren: 'app/dashboard/dashboard.module#DashboardModule' },
-  { path: 'characters', loadChildren: 'app/characters/characters.module#CharactersModule' },
-  { path: 'vehicles', loadChildren: 'app/vehicles/vehicles.module#VehiclesModule' },
-  { path: '**', pathMatch: 'full', component: PageNotFoundComponent },
+  { path: 'dashboard', 
+    loadChildren: 'app/dashboard/dashboard.module#DashboardModule',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    canLoad: [AuthGuard], 
+  },
+  { path: 'characters', 
+    loadChildren: 'app/characters/characters.module#CharactersModule',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    canLoad: [AuthGuard], 
+  },
+  { path: 'vehicles', 
+    loadChildren: 'app/vehicles/vehicles.module#VehiclesModule',
+    canActivate: [AuthGuard],
+    canActivateChild: [AuthGuard],
+    canLoad: [AuthGuard], },
+  { path: '**', 
+    pathMatch: 'full', 
+    component: PageNotFoundComponent
+   },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule],
   providers: [
-  //  AuthGuard,
-  //  CanDeactivateGuard,
-  //  UserProfileService
+    AuthGuard,
+    CanDeactivateGuard,
+    UserProfileService
   ]
 })
 export class AppRoutingModule { }
-
-
-/*
-Copyright 2016 JohnPapa.net, LLC. All Rights Reserved.
-Use of this source code is governed by an MIT-style license that
-can be found in the LICENSE file at http://bit.ly/l1cense
-*/

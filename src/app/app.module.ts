@@ -1,27 +1,34 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-//import { HttpModule } from '@angular/http';
+import { NgModule } from '@angular/core';
+import { BrowserModule  } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import {MaterialModule} from '@angular/material';
 
 import './core/rxjs-extensions';
-//import { AppRoutingModule } from './app-routing.module';
-//import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import 'hammerjs';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { InMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryStoreService } from '../api/in-memory-store.service';
+import { CharacterService } from './models';
 import { PageNotFoundComponent } from './page-not-found.component';
-import { AppComponent }  from './app.component';
+
 
 /* Feature Modules */
-//import { CoreModule } from './core/core.module';
-//import { LoginModule } from './login/login.module';
+import { CoreModule } from './core/core.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
-  imports:      [ 
+  imports: [
     BrowserModule,
-  //  HttpModule,
-  //  LoginModule,
-  //  AppRoutingModule,
-  //  CoreModule
-    ],
-  declarations: [ AppComponent, PageNotFoundComponent ],
-  providers: [],
-  bootstrap:    [ AppComponent ]
+    HttpModule,
+    MaterialModule,
+    LoginModule,
+    AppRoutingModule,
+    CoreModule,
+    InMemoryWebApiModule.forRoot(InMemoryStoreService, { delay: 600 }),
+  ],
+  declarations: [AppComponent, PageNotFoundComponent],
+  providers: [CharacterService],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+declare var componentHandler: any;
 import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
@@ -13,7 +14,7 @@ export class FilterTextComponent {
   constructor() {
     this.changed = new EventEmitter<string>();
 
-   // componentHandler.upgradeDom();
+    componentHandler.upgradeDom();
   }
 
   clear() {

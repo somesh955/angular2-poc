@@ -4,17 +4,18 @@ import { Character } from '../../../models';
 
 @Component({
   moduleId: module.id,
-  selector: 'story-dashboard-button',
-   templateUrl: './dashboard-button.component.html',
-  styleUrls: ['./dashboard-button.component.css']
+  selector: 'story-character-button',
+   templateUrl: './character-button.component.html',
+  styleUrls: ['./character-button.component.css'],
 })
-export class DashboardButtonComponent implements OnInit {
+export class CharacterButtonComponent implements OnInit {
   @Input() character: Character;
 
   constructor() {}
 
   ngOnInit() {
   }
+
 }
 
 

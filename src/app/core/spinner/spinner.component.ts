@@ -1,3 +1,4 @@
+declare var componentHandler: any;
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
@@ -17,7 +18,7 @@ export class SpinnerComponent implements OnDestroy, OnInit {
   constructor(private spinnerService: SpinnerService) { }
 
   ngOnInit() {
-   // componentHandler.upgradeDom();
+    componentHandler.upgradeDom();
     this.spinnerStateChanged = this.spinnerService.spinnerState
       .subscribe((state: SpinnerState) => this.visible = state.show);
   }
